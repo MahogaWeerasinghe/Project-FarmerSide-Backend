@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Validation\ValidationException;
 use App\Farmer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class FarmerController extends Controller
 {
@@ -46,16 +47,19 @@ class FarmerController extends Controller
             $telephone_number = $request->input('telephone_number');
             $username = $request->input('username');
             $password = $hasher->make($request->input('password'));
+			
+			 //$farmer = Farmer::create($request->all());
  
-            $save = farmers::create([
-               
+			
+            $save = Farmer::create([
                 'telephone_number'=> $telephone_number,
-                'username' =>  $username,
-                'password'=>$password,
-              
+                'username'=> $username,
+                'password'=> $password,
+                //'api_token'=> ''
             ]);
+		  
             $res['status'] = true;
-            $res['message'] = 'Registration success!';
+            $res['message'] = 'success!';
             return response($res, 200);
 }
 		catch (\Illuminate\Database\QueryException $ex) {
@@ -65,6 +69,8 @@ class FarmerController extends Controller
         }
 		
     }
+	
+	
 	
 	
 	

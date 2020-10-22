@@ -19,4 +19,9 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api'], function () use ($router) {
 	 $router->post('farmers', ['uses' => 'FarmerController@register']);
+	 //$router->post('farmers', ['uses' => 'LoginController@login']);
 });
+
+$router->post('/login', 'LoginController@login');
+
+//$router->post('/register', 'FarmerController@register');
