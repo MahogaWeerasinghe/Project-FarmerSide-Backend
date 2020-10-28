@@ -70,7 +70,40 @@ class FarmerController extends Controller
 		
     }
 	
+	/* public function get_user()
+    {
+        $user = Farmer::all();
+        if ($user) {
+              $res['status'] = true;
+              $res['message'] = $user;
+ 
+              return response($res);
+        }else{
+          $res['status'] = false;
+          $res['message'] = 'Cannot find user!';
+ 
+          return response($res);
+        }
+       console.log("hello");
+    }*/
 	
+	/* public function get_user(Request $request, $telephone_number)
+    {
+        $user = Farmer::where('telephone_number', $telephone_number)->get();
+        if ($user) {
+              $res['success'] = true;
+              $res['message'] = $user;
+        
+              return response($res);
+        }
+        else{
+          $res['success'] = false;
+          $res['message'] = 'Cannot find user!';
+        
+          return response($res);
+        }
+    }
+	*/
 	
 	
 	

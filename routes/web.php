@@ -20,8 +20,12 @@ $router->get('/', function () use ($router) {
 $router->group(['prefix' => 'api'], function () use ($router) {
 	 $router->post('farmers', ['uses' => 'FarmerController@register']);
 	 //$router->post('farmers', ['uses' => 'LoginController@login']);
+	 //$router->post('farmerdetails', ['uses' => 'editdetailsController@editDetails']);
 });
 
 $router->post('/login', 'LoginController@login');
+$router->post('/editDetails', 'editdetailsController@editDetails');
+//$router->get('/user', [ 'uses' => 'FarmerController@get_user']);
+//$app->get('/farmer/{telephone_number}', ['middleware' => 'auth', 'uses' =>  'FarmerController@get_user']);
 
 //$router->post('/register', 'FarmerController@register');
