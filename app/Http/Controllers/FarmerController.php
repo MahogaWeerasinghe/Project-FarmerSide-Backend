@@ -105,8 +105,25 @@ class FarmerController extends Controller
     }
 	*/
 	
-	
-	
+	 public function updatepw($id, Request $request)
+    {
+        $up = Farmer::findOrFail($id);
+		$hasher = app()->make('hash');
+        
+		$telephone_number = $request->input('telephone_number');
+        $username = $request->input('username');
+		$password = $hasher->make($request->input('password'));
+		$up->update($telephone_number,$username,$password);
+		/*$up = Farmer::update([
+                'telephone_number'=> $telephone_number,
+                'username'=> $username,
+                'password'=> $password,
+                //'api_token'=> ''
+        ]);*/
+		
+		//Farmer::table('farmers')->where('id', $id)->update(['telephone_number' => $telephone_number, 'username' => $username,'password' => $password]);
+        return response()->json($up, 200);
+    }
 	
 	
 
