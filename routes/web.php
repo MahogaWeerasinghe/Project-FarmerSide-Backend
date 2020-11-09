@@ -24,11 +24,14 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 });
 
 $router->post('/login', 'LoginController@login');
+//$router->post('/test', 'LoginController@test');
 $router->post('/editDetails', 'editdetailsController@editDetails');
 $router->put('/update/{id}', 'editdetailsController@update');
 $router->get('/getdetails/{telephone_number}', 'editdetailsController@getdetails');
-
+$router->get('/getloans/{bank_id}', 'LoanController@getloans');
 $router->get('/bankdetails', 'BankController@bankdetails');
+$router->get('/getloandetails/{loan_id}', 'LoanController@getloandetails');
+$router->post('/submitloan', 'applicationController@submitloan');
 //$router->put('/updatepw/{id}', 'FarmerController@updatepw');
 //$router->get('/user', [ 'uses' => 'FarmerController@get_user']);
 //$app->get('/farmer/{telephone_number}', ['middleware' => 'auth', 'uses' =>  'FarmerController@get_user']);
