@@ -12,6 +12,8 @@ class Details extends Model
      *
      * @var array
      */
+	protected $primaryKey = 'nic';
+	 
     protected $fillable = [
         'telephone_number','choose','nameini','namefull','address','TpNo','dob','nic','email'
     ];

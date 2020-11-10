@@ -162,6 +162,28 @@ class editdetailsController extends Controller
     return $user;
 	}
 	
+	public function updatedetails($telephone_number,Request $request)
+{
+	try{
+		$page = $request->all();
+		$plan = Details::where('telephone_number',$telephone_number)->first();
+		$plan->update($page);
+		
+		
+		$res['status'] = true;
+        $res['message'] = 'success!';
+        return response($res, 200);
+	
+	}
+	
+	catch (\Illuminate\Database\QueryException $ex) {
+            $res['status'] = false;
+            $res['message'] = $ex->getMessage();
+            return response($res, 500);
+        }
+
+    
+}
 	
 
 }
