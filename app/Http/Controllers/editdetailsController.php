@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Validation\ValidationException;
-use App\Details;
+use App\Farmersdetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -52,7 +52,7 @@ class editdetailsController extends Controller
 			
 			
             
-            $save = Details::create([
+            $save = Farmersdetails::create([
                 'telephone_number'=> $telephone_number,
 				'choose'=> $choose,
 				'nameini'=> $nameini,
@@ -158,7 +158,7 @@ class editdetailsController extends Controller
 	
 	public function getdetails($telephone_number,Request $request){
     //$telephone_number =$request->input('telephone_number');
-    $user = Details::where('telephone_number',$telephone_number)->first();
+    $user = Farmersdetails::where('telephone_number',$telephone_number)->first();
     return $user;
 	}
 	
@@ -166,7 +166,7 @@ class editdetailsController extends Controller
 {
 	try{
 		$page = $request->all();
-		$plan = Details::where('telephone_number',$telephone_number)->first();
+		$plan = Farmersdetails::where('telephone_number',$telephone_number)->first();
 		$plan->update($page);
 		
 		

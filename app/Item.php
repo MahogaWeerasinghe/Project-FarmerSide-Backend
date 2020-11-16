@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Details extends Model
+class Item extends Model
 {
 
     /**
@@ -12,10 +12,8 @@ class Details extends Model
      *
      * @var array
      */
-	protected $primaryKey = 'nic';
-	 
     protected $fillable = [
-        'telephone_number','choose','nameini','namefull','address','TpNo','dob','nic','email'
+        'name'
     ];
 	
 	

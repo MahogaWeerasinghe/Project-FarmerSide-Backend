@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDetailsTable extends Migration
+class CreateFarmersdetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('details', function (Blueprint $table) {
-        $table->increments('id');
-        $table->string('telephone_number')->unique();
+        Schema::create('farmersdetails', function (Blueprint $table) {
+              $table->increments('id');
+        $table->string('telephone_number');
         $table->string('choose');
         $table->string('nameini');
 		$table->string('namefull');
 		$table->string('address');
 		$table->string('TpNo');
 		$table->string('dob');
-		$table->string('nic');
+		$table->string('nic')->unique();
 		$table->string('email');
             $table->timestamps();
         });
@@ -35,6 +35,6 @@ class CreateDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('details');
+        Schema::dropIfExists('farmersdetails');
     }
 }

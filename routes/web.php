@@ -33,6 +33,7 @@ $router->get('/bankdetails', 'BankController@bankdetails');
 $router->get('/getloandetails/{loan_id}', 'LoanController@getloandetails');
 $router->post('/submitloan', 'applicationController@submitloan');
 $router->post('/updatedetails/{telephone_number}', 'editdetailsController@updatedetails');
+$router->get('/getappdetails/{nic}', 'applicationController@getappdetails');
 //$router->put('/updatepw/{id}', 'FarmerController@updatepw');
 //$router->get('/user', [ 'uses' => 'FarmerController@get_user']);
 
