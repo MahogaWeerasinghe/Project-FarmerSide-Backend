@@ -120,6 +120,7 @@ class applicationController extends Controller
 		  
             $res['status'] = true;
             $res['message'] = 'success!';
+			$res['data']=$save;
             return response($res, 200);
 }
 		catch (\Illuminate\Database\QueryException $ex) {
