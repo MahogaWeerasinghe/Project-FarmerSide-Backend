@@ -35,7 +35,10 @@ $router->post('/submitloan', 'applicationController@submitloan');
 $router->post('/updatedetails/{telephone_number}', 'editdetailsController@updatedetails');
 $router->get('/getappdetails/{nic}', 'applicationController@getappdetails');
 $router->post('/insertaccount', 'accountController@insertaccount');
-$router->post('/submitAgrireports/test', 'agrireportsController@submitAgrireports');
+$router->post('/submitAgrireports', 'agrireportsController@submitAgrireports');
+$router->get('/showapplyloan/{nic}', 'applyloanController@showapplyloan');
+$router->get('/insertagain/{loan_id}/{app_id}/{nic}', 'applicationviewsController@insertagain');
+
 //$router->put('/updatepw/{id}', 'FarmerController@updatepw');
 //$router->get('/user', [ 'uses' => 'FarmerController@get_user']);
 

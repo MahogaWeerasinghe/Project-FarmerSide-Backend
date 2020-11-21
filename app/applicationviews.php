@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Agrireports extends Model
+class applicationviews extends Model
 {
 
     /**
@@ -13,7 +13,7 @@ class Agrireports extends Model
      * @var array
      */
     protected $fillable = [
-        'app_id','agr_images','type'
+        'loan_id','app_id','nic'
     ];
 	
 		

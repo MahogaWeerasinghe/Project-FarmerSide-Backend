@@ -10,25 +10,25 @@ class agrireportsController extends Controller
 {
 
   	
-	 public function submitAgrireports($app_id,$agr_images)
+	 public function submitAgrireports(Request $request)
     {
       
- 
-       try {
-
-            
-            $save = Agrireports::create([
-            'app_id' => $app_id,
-            'agr_images' => $agr_images,
-
-            ]);
-		  
+	try{	
+		$repo = new Agrireports;
+		
+		$repo->app_id= $request->input('app_id');
+        $repo->agr_images=$request->input('agr_images');
+        $repo->type=$request->input('type');
+        
+		$repo->save();
+     
             $res['status'] = true;
-            $res['message'] = 'success!';
-			$res['data']=$save;
+            $res['message'] = 'insert success!';
+        
             return response($res, 200);
-}
-		catch (\Illuminate\Database\QueryException $ex) {
+			
+	}
+         catch (\Illuminate\Database\QueryException $ex) {
             $res['status'] = false;
             $res['message'] = $ex->getMessage();
             return response($res, 500);
@@ -40,3 +40,5 @@ class agrireportsController extends Controller
 	
 
 }
+?>
+

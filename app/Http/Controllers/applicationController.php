@@ -31,6 +31,9 @@ class applicationController extends Controller
 			'spo_emplo' => 'required',
 			'children' => 'required',
 			'fix_name' => 'required',
+			'latitude' => 'required',
+			'longitude' => 'required',
+			'address' => 'required',
 			'fix_deed' => 'required',
 			'fix_size' => 'required',
 			'fix_value' => 'required',
@@ -70,7 +73,10 @@ class applicationController extends Controller
 			$spousename = $request->input('spousename');
 			$spo_emplo = $request->input('spo_emplo');
 			$children = $request->input('children');
-            $fix_name = $request->input('fix_name');
+			$fix_name = $request->input('fix_name');
+			$latitude = $request->input('latitude');
+			$longitude = $request->input('longitude');
+			$address= $request->input('address');
 			$fix_deed = $request->input('fix_deed');
 			$fix_size = $request->input('fix_size');
 			$fix_value = $request->input('fix_value');
@@ -100,6 +106,9 @@ class applicationController extends Controller
 			'spo_emplo' => $spo_emplo,
 			'children' => $children,
 			'fix_name' => $fix_name,
+			'latitude' => $latitude,
+			'longitude' => $longitude,
+			'address' => $address,
 			'fix_deed' => $fix_deed,
 			'fix_size' => $fix_size,
 			'fix_value' => $fix_value,

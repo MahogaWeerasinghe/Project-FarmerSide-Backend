@@ -22,7 +22,7 @@ class LoanController extends Controller
 	}
 	
 		
-	public function getloandetails($loan_id,Request $request){
+	public function getloandetails($loan_id){
     //$telephone_number =$request->input('telephone_number');
     //$user = Loan::where('bank_id',$bank_id)->first();
 	$user = Loan::where('loan_id',$loan_id)->first();
