@@ -37,7 +37,16 @@ $router->get('/getappdetails/{nic}', 'applicationController@getappdetails');
 $router->post('/insertaccount', 'accountController@insertaccount');
 $router->post('/submitAgrireports', 'agrireportsController@submitAgrireports');
 $router->get('/showapplyloan/{nic}', 'applyloanController@showapplyloan');
-$router->get('/insertagain/{loan_id}/{app_id}/{nic}', 'applicationviewsController@insertagain');
+$router->get('/insertagain/{loan_id}/{app_id}/{nic}/{date}', 'applicationviewsController@insertagain');
+$router->get('/getapplicantdetails/{app_id}', [ 'uses' => 'applyloanController@getapplicantdetails']);
+$router->get('/getreports/{app_id}/{type}', [ 'uses' => 'agrireportsController@getreports']);
+$router->get('/getaccounts/{nic}', [ 'uses' => 'accountController@getaccounts']);
+$router->get('/showrejectloan/{nic}', [ 'uses' => 'rejectloansController@showrejectloan']);
+$router->get('/showrejectloandata/{application_id}', [ 'uses' => 'rejectloansController@showrejectloandata']);
+$router->get('/showapproveloan/{nic}', [ 'uses' => 'approveloasController@showapproveloan']);
+$router->get('/showapproveloandata/{application_id}', [ 'uses' => 'approveloasController@showapproveloandata']);
+
+
 
 //$router->put('/updatepw/{id}', 'FarmerController@updatepw');
 //$router->get('/user', [ 'uses' => 'FarmerController@get_user']);

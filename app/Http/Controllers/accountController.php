@@ -68,11 +68,16 @@ class accountController extends Controller
 		
     }
 	
-	/*public function getappdetails($nic,Request $request){
-    //$telephone_number =$request->input('telephone_number');
-    $user = Applications::where('nic',$nic)->get();
-    return $user;
-	}*/
+	
+    public function getaccounts($nic){
+      
+        $user = Account::where('nic',$nic)->select('*')->get();
+        
+        return $user;
+    }
+	
+	
+
 	
 
 }

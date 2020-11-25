@@ -9,13 +9,14 @@ use Illuminate\Support\Facades\Hash;
 class applicationviewsController extends Controller
 {
 
-    public function insertagain($loan_id,$app_id,$nic){
+    public function insertagain($loan_id,$app_id,$nic,$date){
         
   
             $save = applicationviews::create([
             'loan_id' => $loan_id,
             'app_id' => $app_id,
             'nic'=>$nic,
+            'date'=>$date
    
                
             ]);
@@ -34,6 +35,8 @@ class applicationviewsController extends Controller
                  return response($res);
                 }
     }
+
+    
   	
 	 
 	
