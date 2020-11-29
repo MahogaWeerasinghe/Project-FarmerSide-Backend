@@ -46,7 +46,9 @@ $router->get('/showrejectloandata/{application_id}', [ 'uses' => 'rejectloansCon
 $router->get('/showapproveloan/{nic}', [ 'uses' => 'approveloasController@showapproveloan']);
 $router->get('/showapproveloandata/{application_id}', [ 'uses' => 'approveloasController@showapproveloandata']);
 
-
+$router->get('/showpayments/{nic}', [ 'uses' => 'paymentController@showpayments']);
+$router->get('/showpaymentdetails/{obtain_id}', [ 'uses' => 'paymentController@showpaymentdetails']);
+$router->get('/showpaymentdetailslatest/{obtain_id}', [ 'uses' => 'paymentController@showpaymentdetails']);
 
 //$router->put('/updatepw/{id}', 'FarmerController@updatepw');
 //$router->get('/user', [ 'uses' => 'FarmerController@get_user']);

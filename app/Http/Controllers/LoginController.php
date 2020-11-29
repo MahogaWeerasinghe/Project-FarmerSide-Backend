@@ -31,7 +31,7 @@ class LoginController extends Controller
  
                              // $create_token = User::where('id', $login->id_user)->update(['api_token' => $api_token]);
                               $res['status'] = true;
-                              $res['message'] = 'Success login';
+                              $res['message'] = 'Success Login';
                               $res['data'] =  $login;
                               //$res['api_token'] =  $api_token;
  
