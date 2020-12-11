@@ -2,39 +2,202 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Validation\ValidationException;
-use App\applicationviews;
+use App\reports;
+use App\Farmersdetails;
+use App\Applications;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class applicationviewsController extends Controller
 {
 
-    public function insertagain($loan_id,$app_id,$nic,$date){
-        
-  
-            $save = applicationviews::create([
-            'loan_id' => $loan_id,
-            'app_id' => $app_id,
-            'nic'=>$nic,
-            'date'=>$date
-   
-               
-            ]);
+
+    public function viewagri($GN_No){
+
+      $user = applications :: join('reports','reports.app_id','=','applications.id')
+              ->join('farmersdetails','farmersdetails.nic','=','applications.nic')
+              ->where('reports.GN_No', '=',$GN_No)
+                ->where('reports.AO_status','=',"false")
+                ->where('reports.AI_status','=',"false")
+                ->where('reports.DO_status','=',"false")
+                ->where('reports.bank_status','=',"false")
+                ->select('*')
+                ->get();
+
+                if ($user) {
+                    $res['status'] = true;
+                    $res['message'] = $user;
+            
+                    return response($res);
+                    }
+                    else{
+                       $res['status'] = false;
+                       $res['message'] = 'success';
+            
+                     return response($res);
+                    }
 
 
-            if ($save) {
-                $res['status'] = true;
-                $res['message'] = $save;
+    
+        }
+
+        public function getpers($rep_id){
+
+          $user = applications :: join('reports','reports.app_id','=','applications.id')
+                  ->join('farmersdetails','farmersdetails.nic','=','applications.nic')
+                  ->where('reports.rep_id', '=',$rep_id)
+                    ->select('*')
+                    ->get();
+    
+                    if ($user) {
+                        $res['status'] = true;
+                        $res['message'] = $user;
+                
+                        return response($res);
+                        }
+                        else{
+                           $res['status'] = false;
+                           $res['message'] = 'success';
+                
+                         return response($res);
+                        }
+    
+    
         
-                return response($res);
+            }
+
+                public function updateagri($rep_id,Request $request)
+                {
+                  try{
+                    $page = $request->all();
+                    $plan = reports::where('rep_id','=',$rep_id)->first();
+                    $plan->update($page);
+                    
+                    
+                        $res['status'] = true;
+                        $res['message'] = 'success!';
+                        return response($res, 200);
+                  
+                  }
+                  
+                  catch (\Illuminate\Database\QueryException $ex) {
+                            $res['status'] = false;
+                            $res['message'] = $ex->getMessage();
+                            return response($res, 500);
+                        }
+    
                 }
-                else{
-                   $res['status'] = false;
-                   $res['message'] = 'success';
-        
-                 return response($res);
+    
+
+                public function createreport(Request $request)
+                {
+                  
+                
+                
+            
+                   try {
+                        //$hasher = app()->make('hash');
+                       
+                  $app_id = $request->input('app_id');
+                  $GN_No = $request->input('GN_No');
+                  $GN_Division = $request->input('GN_Division');
+                  $Agr_service_dev = $request->input('Agr_service_dev');
+                  $District = $request->input('District');
+                  $ao_status= $request->input('ao_status');
+                  $ai_status = $request->input('ai_status');
+                  $do_status = $request->input('do_status');
+                 
+                  
+                        
+                        $save = reports::create([
+                    'app_id'=> $app_id,
+                    'GN_No'=> $GN_No,
+                    'GN_Division'=> $GN_Division,
+                    'Agr_service_dev'=> $Agr_service_dev,
+                    'District'=> $District,
+                    'ao_status'=> $ao_status,
+                    'ai_status'=> $ai_status,
+                    'do_status'=> $do_status ,
+                 
+                    
+                          
+                           
+                        ]);
+                  
+                        $res['status'] = true;
+                        $res['message'] = 'success!';
+                        return response($res, 200);
+            }
+                catch (\Illuminate\Database\QueryException $ex) {
+                        $res['status'] = false;
+                        $res['message'] = $ex->getMessage();
+                        return response($res, 500);
+                    }
+                
                 }
-    }
+
+                public function viewai($GN_No){
+
+                  $user = applications :: join('reports','reports.app_id','=','applications.id')
+                          ->join('farmersdetails','farmersdetails.nic','=','applications.nic')
+                          ->where('reports.GN_No', '=',$GN_No)
+                            ->where('reports.AO_status','=',"true")
+                            ->where('reports.AI_status','=',"false")
+                            ->where('reports.DO_status','=',"false")
+                            ->where('reports.bank_status','=',"false")
+                            ->select('*')
+                            ->get();
+            
+                            if ($user) {
+                                $res['status'] = true;
+                                $res['message'] = $user;
+                        
+                                return response($res);
+                                }
+                                else{
+                                   $res['status'] = false;
+                                   $res['message'] = 'success';
+                        
+                                 return response($res);
+                                }
+            
+            
+                
+                    }
+
+
+                    
+
+    public function viewdo($Agr_service_dev){
+
+      $user = applications :: join('reports','reports.app_id','=','applications.id')
+              ->join('farmersdetails','farmersdetails.nic','=','applications.nic')
+              ->where('reports.Agr_service_dev', '=',$Agr_service_dev)
+                ->where('reports.AO_status','=',"true")
+                ->where('reports.AI_status','=',"true")
+                ->where('reports.DO_status','=',"false")
+                ->where('reports.bank_status','=',"false")
+                ->select('*')
+                ->get();
+
+                if ($user) {
+                    $res['status'] = true;
+                    $res['message'] = $user;
+            
+                    return response($res);
+                    }
+                    else{
+                       $res['status'] = false;
+                       $res['message'] = 'success';
+            
+                     return response($res);
+                    }
+
+
+    
+        }
+
+
 
     
   	

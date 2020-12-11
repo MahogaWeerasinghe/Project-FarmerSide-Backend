@@ -128,7 +128,7 @@ class applicationController extends Controller
             ]);
 		  
             $res['status'] = true;
-            $res['message'] = 'success!';
+            $res['message'] = 'Please Attach Agriculture reports !';
 			$res['data']=$save;
             return response($res, 200);
 }

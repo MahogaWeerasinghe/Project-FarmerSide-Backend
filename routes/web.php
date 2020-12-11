@@ -49,7 +49,18 @@ $router->get('/showapproveloandata/{application_id}', [ 'uses' => 'approveloasCo
 $router->get('/showpayments/{nic}', [ 'uses' => 'paymentController@showpayments']);
 $router->get('/showpaymentdetails/{obtain_id}', [ 'uses' => 'paymentController@showpaymentdetails']);
 $router->get('/showpaymentdetailslatest/{obtain_id}', [ 'uses' => 'paymentController@showpaymentdetails']);
-
+$router->post('/loginofficer', 'officerloginController@loginofficer');
+$router->get('/getAODetails/{nic}', [ 'uses' => 'officersdetailsController@getAODetails']);
+$router->get('/getAIDetails/{nic}', [ 'uses' => 'officersdetailsController@getAIDetails']);
+$router->get('/viewagri/{GN_No}', [ 'uses' => 'applicationviewsController@viewagri']);
+$router->get('/getpers/{rep_id}', [ 'uses' => 'applicationviewsController@getpers']);
+$router->post('/updateagri/{rep_id}','applicationviewsController@updateagri');
+$router->post('/createagriloan','agriloansController@createagriloan');
+$router->post('/createreport', 'applicationviewsController@createreport');
+$router->get('/viewai/{GN_No}', [ 'uses' => 'applicationviewsController@viewai']);
+$router->get('/updateagrio/{nic}', [ 'uses' => 'officersdetailsController@updateagrio']);
+$router->get('/getDODetails/{nic}', [ 'uses' => 'officersdetailsController@getDODetails']);
+$router->get('/viewdo/{Agr_service_dev}', [ 'uses' => 'applicationviewsController@viewdo']);
 //$router->put('/updatepw/{id}', 'FarmerController@updatepw');
 //$router->get('/user', [ 'uses' => 'FarmerController@get_user']);
 

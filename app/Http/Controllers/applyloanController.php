@@ -5,7 +5,7 @@ use Illuminate\Validation\ValidationException;
 use App\Applications;
 use App\Farmersdetails;
 use App\Loan;
-use App\applicationviews;
+use App\reports;
 use App\Agrireports;
 
 use Illuminate\Http\Request;
@@ -21,10 +21,16 @@ class applyloanController extends Controller
       // 'nic','applications.nic')
        //->select('nameini','date')->get();
 	   
-	   $user = applicationviews::join('loans', 'loans.loan_id', '=', 'applicationviews.loan_id')
+     $user = Applications::join('loans', 'loans.loan_id', '=', 'applications.loan_id')
+     ->join('reports', 'reports.app_id', '=', 'applications.id')
       ->where('nic', '=',$nic)
-      ->select('loan_name','applicationviews.app_id')
+      ->where('ao_status', '=','true')
+      ->where('ai_status', '=','true')
+      ->where('do_status', '=','true')
+      ->select('*')
      ->get();
+
+    
 	
        if ($user) {
         $res['status'] = true;
