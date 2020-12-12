@@ -15,7 +15,7 @@ class Farmersdetails extends Model
 	
 	 
     protected $fillable = [
-        'telephone_number','choose','nameini','namefull','address','TpNo','dob','nic','email'
+       'nic','choose','nameini','namefull','address','TpNo','dob','email'
     ];
 	
 	

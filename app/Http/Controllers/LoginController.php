@@ -12,7 +12,7 @@ class LoginController extends Controller
     {
  
       $rules = [
-          'telephone_number' => 'required',
+          'nic' => 'required',
           'password' => 'required'
       ];
  
@@ -20,9 +20,9 @@ class LoginController extends Controller
            'required' => ':attribute all need'
       ];
         $this->validate($request, $rules, $customMessages);
-         $tp    = $request->input('telephone_number');
+         $tp    = $request->input('nic');
         try {
-            $login = Farmer::where('telephone_number', $tp)->first();
+            $login = Farmer::where('nic', $tp)->first();
             if ($login) {
                 if ($login->count() > 0) {
                     if (Hash::check($request->input('password'), $login->password)) {
@@ -45,17 +45,17 @@ class LoginController extends Controller
                         }
                     } else {
                         $res['success'] = false;
-                        $res['message'] = 'Username / email / password not found';
+                        $res['message'] = 'Username / nic / password not found';
                         return response($res, 401);
                     }
                 } else {
                     $res['success'] = false;
-                    $res['message'] = 'Username / email / password  not found';
+                    $res['message'] = 'Username / nic / password  not found';
                     return response($res, 401);
                 }
             } else {
                 $res['success'] = false;
-                $res['message'] = 'Username / email / password not found';
+                $res['message'] = 'Username / nic / password not found';
                 return response($res, 401);
             }
         } catch (\Illuminate\Database\QueryException $ex) {

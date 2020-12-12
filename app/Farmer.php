@@ -13,7 +13,7 @@ class Farmer extends Model
      * @var array
      */
     protected $fillable = [
-        'telephone_number','username','password'
+        'nic','username','password'
     ];
 
     /**

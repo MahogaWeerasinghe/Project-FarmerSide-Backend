@@ -27,12 +27,12 @@ $router->post('/login', 'LoginController@login');
 //$router->post('/test', 'LoginController@test');
 $router->post('/editDetails', 'editdetailsController@editDetails');
 //$router->put('/update/{id}', 'editdetailsController@update');
-$router->get('/getdetails/{telephone_number}', 'editdetailsController@getdetails');
+$router->get('/getdetails/{nic}', 'editdetailsController@getdetails');
 $router->get('/getloans/{bank_id}', 'LoanController@getloans');
 $router->get('/bankdetails', 'BankController@bankdetails');
 $router->get('/getloandetails/{loan_id}', 'LoanController@getloandetails');
 $router->post('/submitloan', 'applicationController@submitloan');
-$router->post('/updatedetails/{telephone_number}', 'editdetailsController@updatedetails');
+$router->post('/updatedetails/{nic}', 'editdetailsController@updatedetails');
 $router->get('/getappdetails/{nic}', 'applicationController@getappdetails');
 $router->post('/insertaccount', 'accountController@insertaccount');
 $router->post('/submitAgrireports', 'agrireportsController@submitAgrireports');
@@ -61,9 +61,17 @@ $router->get('/viewai/{GN_No}', [ 'uses' => 'applicationviewsController@viewai']
 $router->get('/updateagrio/{nic}', [ 'uses' => 'officersdetailsController@updateagrio']);
 $router->get('/getDODetails/{nic}', [ 'uses' => 'officersdetailsController@getDODetails']);
 $router->get('/viewdo/{Agr_service_dev}', [ 'uses' => 'applicationviewsController@viewdo']);
+$router->get('/showstatus/{nic}', [ 'uses' => 'statusController@showstatus']);
+$router->get('/showAO/{rep_id}', [ 'uses' => 'statusController@showAO']);
+$router->get('/showAI/{rep_id}', [ 'uses' => 'statusController@showAI']);
+$router->get('/showDO/{rep_id}', [ 'uses' => 'statusController@showDO']);
+$router->get('/showAR/{rep_id}', [ 'uses' => 'applicationviewsController@showAR']);
+$router->get('/showARloans/{rep_id}', [ 'uses' => 'applicationviewsController@showARloans']);
+$router->get('/dltloans/{rep_id}', [ 'uses' => 'agriloansController@dltloans']);
 //$router->put('/updatepw/{id}', 'FarmerController@updatepw');
 //$router->get('/user', [ 'uses' => 'FarmerController@get_user']);
 
 //$app->get('/farmer/{telephone_number}', ['middleware' => 'auth', 'uses' =>  'FarmerController@get_user']);
 
 //$router->post('/register', 'FarmerController@register');
+

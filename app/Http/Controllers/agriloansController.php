@@ -15,6 +15,7 @@ class agriloansController extends Controller
 
                 public function createagriloan(Request $request)
                 {
+
                   try{
                     $rep_id = $request->input('rep_id');
                     $bank_name = $request->input('bank_name');
@@ -43,6 +44,29 @@ class agriloansController extends Controller
                 }
     
 
+                public function dltloans($rep_id){
+
+                  $user = agriloans::where('agriloans.rep_id', '=',$rep_id)
+                            ->delete();
+                            
+            
+                            if ($user) {
+                                $res['status'] = true;
+                                $res['message'] = $user;
+                        
+                                return response($res);
+                                }
+                                else{
+                                   $res['status'] = false;
+                                   $res['message'] = 'success';
+                        
+                                 return response($res);
+                                }
+            
+            
+                
+                    }
+        
 
 
 

@@ -30,7 +30,7 @@ class FarmerController extends Controller
 		
 		$rules = [
       
-            'telephone_number' => 'required',
+            'nic' => 'required',
             'username' => 'required',
             'password' => 'required',
            
@@ -44,7 +44,7 @@ class FarmerController extends Controller
        try {
             $hasher = app()->make('hash');
            
-            $telephone_number = $request->input('telephone_number');
+            $nic= $request->input('nic');
             $username = $request->input('username');
             $password = $hasher->make($request->input('password'));
 			
@@ -52,7 +52,7 @@ class FarmerController extends Controller
  
 			
             $save = Farmer::create([
-                'telephone_number'=> $telephone_number,
+                'nic'=> $nic,
                 'username'=> $username,
                 'password'=> $password,
                 //'api_token'=> ''

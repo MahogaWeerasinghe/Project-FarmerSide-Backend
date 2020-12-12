@@ -18,14 +18,13 @@ class editdetailsController extends Controller
 		
 		$rules = [
       
-            'telephone_number' => 'required',
+            'nic' => 'required',
             'choose' => 'required',
             'nameini' => 'required',
 			'namefull' => 'required',
 			'address' => 'required',
 			'TpNo' => 'required',
 			'dob' => 'required',
-			'nic' => 'required',
 			'email' => 'required',
 
            
@@ -39,28 +38,26 @@ class editdetailsController extends Controller
        try {
             //$hasher = app()->make('hash');
            
-            $telephone_number = $request->input('telephone_number');
+            $nic = $request->input('nic');
             $choose = $request->input('choose');
 			$nameini = $request->input('nameini');
 			$namefull = $request->input('namefull');
 			$address = $request->input('address');
 			$TpNo = $request->input('TpNo');
 			$dob = $request->input('dob');
-			$nic = $request->input('nic');
 			$email = $request->input('email');
 			
 			
 			
             
             $save = Farmersdetails::create([
-                'telephone_number'=> $telephone_number,
+                'nic'=> $nic,
 				'choose'=> $choose,
 				'nameini'=> $nameini,
 				'namefull'=> $namefull,
 				'address'=> $address,
 				'TpNo'=> $TpNo,
 				'dob'=> $dob,
-				'nic'=> $nic,
 				'email'=> $email,
 				
 				
@@ -88,14 +85,13 @@ class editdetailsController extends Controller
 		
 		$rules = [
       
-            'telephone_number' => 'required',
+            'nic' => 'required',
             'choose' => 'required',
             'nameini' => 'required',
 			'namefull' => 'required',
 			'address' => 'required',
 			'TpNo' => 'required',
 			'dob' => 'required',
-			'nic' => 'required',
 			'email' => 'required',
 
            
@@ -109,14 +105,13 @@ class editdetailsController extends Controller
        try {
             //$hasher = app()->make('hash');
            
-            $telephone_number = $request->input('telephone_number');
+            $nic = $request->input('nic');
             $choose = $request->input('choose');
 			$nameini = $request->input('nameini');
 			$namefull = $request->input('namefull');
 			$address = $request->input('address');
 			$TpNo = $request->input('TpNo');
 			$dob = $request->input('dob');
-			$nic = $request->input('nic');
 			$email = $request->input('email');
 			
 			
@@ -156,17 +151,17 @@ class editdetailsController extends Controller
 	
 
 	
-	public function getdetails($telephone_number,Request $request){
+	public function getdetails($nic,Request $request){
     //$telephone_number =$request->input('telephone_number');
-    $user = Farmersdetails::where('telephone_number',$telephone_number)->first();
+    $user = Farmersdetails::where('nic',$nic)->first();
     return $user;
 	}
 	
-	public function updatedetails($telephone_number,Request $request)
+	public function updatedetails($nic,Request $request)
 {
 	try{
 		$page = $request->all();
-		$plan = Farmersdetails::where('telephone_number',$telephone_number)->first();
+		$plan = Farmersdetails::where('nic',$nic)->first();
 		$plan->update($page);
 		
 		

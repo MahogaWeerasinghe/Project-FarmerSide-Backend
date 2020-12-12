@@ -7,6 +7,7 @@ use App\Farmersdetails;
 use App\Applications;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\agriloans;
 
 class applicationviewsController extends Controller
 {
@@ -106,7 +107,7 @@ class applicationviewsController extends Controller
                   $ao_status= $request->input('ao_status');
                   $ai_status = $request->input('ai_status');
                   $do_status = $request->input('do_status');
-                 
+                  $bank_status = $request->input('bank_status');
                   
                         
                         $save = reports::create([
@@ -118,7 +119,7 @@ class applicationviewsController extends Controller
                     'ao_status'=> $ao_status,
                     'ai_status'=> $ai_status,
                     'do_status'=> $do_status ,
-                 
+                    'bank_status'=> $bank_status ,
                     
                           
                            
@@ -196,6 +197,55 @@ class applicationviewsController extends Controller
 
     
         }
+
+
+        public function showAR($rep_id){
+
+          $user = reports ::where('reports.rep_id', '=',$rep_id)
+                    ->select('*')
+                    ->get();
+    
+                    if ($user) {
+                        $res['status'] = true;
+                        $res['message'] = $user;
+                
+                        return response($res);
+                        }
+                        else{
+                           $res['status'] = false;
+                           $res['message'] = 'success';
+                
+                         return response($res);
+                        }
+    
+    
+        
+            }
+
+            
+        public function showARloans($rep_id){
+
+          $user = agriloans::where('agriloans.rep_id', '=',$rep_id)
+                    ->select('*')
+                    ->get();
+    
+                    if ($user) {
+                        $res['status'] = true;
+                        $res['message'] = $user;
+                
+                        return response($res);
+                        }
+                        else{
+                           $res['status'] = false;
+                           $res['message'] = 'success';
+                
+                         return response($res);
+                        }
+    
+    
+        
+            }
+
 
 
 
