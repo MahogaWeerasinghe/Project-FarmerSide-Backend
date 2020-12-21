@@ -27,6 +27,7 @@ class applyloanController extends Controller
       ->where('ao_status', '=','true')
       ->where('ai_status', '=','true')
       ->where('do_status', '=','true')
+      ->where('bank_status', '=','false')
       ->select('*')
      ->get();
 

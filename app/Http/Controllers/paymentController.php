@@ -7,6 +7,7 @@ use App\Applications;
 use App\Loan;
 use App\Payments;
 use App\obtainloans;
+use App\farmersdetails;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -24,7 +25,7 @@ class paymentController extends Controller
        $user = obtainloans::join('applications', 'id', '=', 'obtainloans.application_id')
        ->join('loans','loans.loan_id','=','obtainloans.loan_id')
       ->where('applications.nic', '=',$nic)
-      ->select('obtainloans.obtain_id','loans.loan_name','obtainloans.application_id','obtainloans.amount','obtainloans.interest_rate','obtainloans.total_amount')
+      ->select('*')
      ->get();
 
 	
@@ -95,6 +96,67 @@ class paymentController extends Controller
         }
 		
   }
+
+
+  public function getobtain($nic){
+      
+    $user = Applications::join('obtainloans', 'obtainloans.application_id', '=', 'applications.id')
+    ->join('farmersdetails', 'farmersdetails.nic', '=', 'applications.nic')
+    ->join('loans', 'loans.loan_id', '=', 'applications.loan_id')
+    ->where('farmersdetails.nic', '=',$nic)
+    ->select('*')
+    ->get();
+
+
+    
+
+       if ($user) {
+        $res['status'] = true;
+        $res['message'] = $user;
+
+        return response($res);
+        }
+        else{
+           $res['status'] = false;
+           $res['message'] = 'Cannot find applicant!';
+
+         return response($res);
+        }
+
+
+
+ }
+
+ public function getobtainbyid($obtain_id){
+      
+  $user = Applications::join('obtainloans', 'obtainloans.application_id', '=', 'applications.id')
+  ->join('farmersdetails', 'farmersdetails.nic', '=', 'applications.nic')
+  ->join('loans', 'loans.loan_id', '=', 'applications.loan_id')
+  ->where('obtainloans.obtain_id', '=',$obtain_id)
+  ->select('*')
+  ->get();
+
+
+  
+
+     if ($user) {
+      $res['status'] = true;
+      $res['message'] = $user;
+
+      return response($res);
+      }
+      else{
+         $res['status'] = false;
+         $res['message'] = 'Cannot find applicant!';
+
+       return response($res);
+      }
+
+
+
+}
+
+
 
 
   

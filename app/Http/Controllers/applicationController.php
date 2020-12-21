@@ -22,7 +22,7 @@ class applicationController extends Controller
             'nic' => 'required',
             'date' => 'required',
 			'crop' => 'required',
-			'whatfor' => 'required',
+			//'whatfor' => 'required',
 			'reason' => 'required',
 			'amount' => 'required',
 			'months' => 'required',
@@ -33,7 +33,7 @@ class applicationController extends Controller
 			'fix_name' => 'required',
 			'latitude' => 'required',
 			'longitude' => 'required',
-			'address' => 'required',
+			'location' => 'required',
 			'fix_deed' => 'required',
 			'fix_size' => 'required',
 			'fix_value' => 'required',
@@ -46,6 +46,7 @@ class applicationController extends Controller
 			'gua2_name' => 'required',
 			'gua2_occ' => 'required',
 			'gua2_tp' => 'required',
+			'branch' => 'required',
 			
 		
            
@@ -65,7 +66,7 @@ class applicationController extends Controller
 			$nic = $request->input('nic');
             $date = $request->input('date');
 			$crop = $request->input('crop');
-			$whatfor = $request->input('whatfor');
+			//$whatfor = $request->input('whatfor');
 			$reason = $request->input('reason');
 			$amount = $request->input('amount');
 			$months = $request->input('months');
@@ -76,7 +77,7 @@ class applicationController extends Controller
 			$fix_name = $request->input('fix_name');
 			$latitude = $request->input('latitude');
 			$longitude = $request->input('longitude');
-			$address= $request->input('address');
+			$location= $request->input('location');
 			$fix_deed = $request->input('fix_deed');
 			$fix_size = $request->input('fix_size');
 			$fix_value = $request->input('fix_value');
@@ -89,7 +90,7 @@ class applicationController extends Controller
 			$gua2_name = $request->input('gua2_name');
 			$gua2_occ = $request->input('gua2_occ');
 			$gua2_tp = $request->input('gua2_tp');
-			
+			$branch = $request->input('branch');
 			
             
             $save = Applications::create([
@@ -97,7 +98,7 @@ class applicationController extends Controller
             'nic' => $nic,
             'date' => $date,
 			'crop' => $crop,
-			'whatfor' => $whatfor,
+			//'whatfor' => $whatfor,
 			'reason' => $reason,
 			'amount' => $amount,
 			'months' => $months,
@@ -108,7 +109,7 @@ class applicationController extends Controller
 			'fix_name' => $fix_name,
 			'latitude' => $latitude,
 			'longitude' => $longitude,
-			'address' => $address,
+			'location' => $location,
 			'fix_deed' => $fix_deed,
 			'fix_size' => $fix_size,
 			'fix_value' => $fix_value,
@@ -121,6 +122,7 @@ class applicationController extends Controller
 			'gua2_name' => $gua2_name,
 			'gua2_occ' => $gua2_occ,
 			'gua2_tp' => $gua2_tp,
+			'branch' => $branch,
 				
 				
               

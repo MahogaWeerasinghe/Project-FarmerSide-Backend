@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Loan extends Model
+class loans extends Model
 {
 
     /**
@@ -12,13 +12,11 @@ class Loan extends Model
      *
      * @var array
      */
+
     
-   
     protected $fillable = [
-        'loan_id','bank_id','loan_name','genera_info','specific_info','eligible_borrowers','eligible_crops','maximum_loanamount','Rateofinterest','Repaymentperiod','more_info','loan_logo'
+        'loan_id','bank_id', 'loan_name', 'genera_info', 'specific_info', 'eligible_borrowers', 'eligible_crops', 'maximum_loanamount', 'Rateofinterest', 'Repaymentperiod', 'more_info', 'loan_logo'
     ];
-	
-	
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -26,4 +24,5 @@ class Loan extends Model
      * @var array
      */
     protected $hidden = [];
+    //protected $primaryKey = 'loan_id';
 }

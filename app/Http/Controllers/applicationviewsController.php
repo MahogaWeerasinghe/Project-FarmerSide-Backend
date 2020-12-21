@@ -67,6 +67,8 @@ class applicationviewsController extends Controller
         
             }
 
+         
+
                 public function updateagri($rep_id,Request $request)
                 {
                   try{
@@ -245,6 +247,90 @@ class applicationviewsController extends Controller
     
         
             }
+
+
+
+            public function viewagrihis($ao_id){
+
+              $user = applications :: join('reports','reports.app_id','=','applications.id')
+                      ->join('farmersdetails','farmersdetails.nic','=','applications.nic')
+                      ->where('reports.ao_id', '=',$ao_id)
+                        ->where('reports.ao_status','=',"true")
+                        ->orderBy('reports.ao_date', 'desc')
+                        ->select('*')
+                        ->get();
+        
+                        if ($user) {
+                            $res['status'] = true;
+                            $res['message'] = $user;
+                    
+                            return response($res);
+                            }
+                            else{
+                               $res['status'] = false;
+                               $res['message'] = 'success';
+                    
+                             return response($res);
+                            }
+        
+        
+            
+                }
+
+                
+            public function viewaihis($ai_id){
+
+              $user = applications :: join('reports','reports.app_id','=','applications.id')
+                      ->join('farmersdetails','farmersdetails.nic','=','applications.nic')
+                      ->where('reports.ai_id', '=',$ai_id)
+                        ->where('reports.ai_status','=',"true")
+                        ->orderBy('reports.ai_date', 'desc')
+                        ->select('*')
+                        ->get();
+        
+                        if ($user) {
+                            $res['status'] = true;
+                            $res['message'] = $user;
+                    
+                            return response($res);
+                            }
+                            else{
+                               $res['status'] = false;
+                               $res['message'] = 'success';
+                    
+                             return response($res);
+                            }
+        
+        
+            
+                }
+
+                public function viewdohis($do_id){
+
+                  $user = applications :: join('reports','reports.app_id','=','applications.id')
+                          ->join('farmersdetails','farmersdetails.nic','=','applications.nic')
+                          ->where('reports.do_id', '=',$do_id)
+                            ->where('reports.do_status','=',"true")
+                            ->orderBy('reports.do_date', 'desc')
+                            ->select('*')
+                            ->get();
+            
+                            if ($user) {
+                                $res['status'] = true;
+                                $res['message'] = $user;
+                        
+                                return response($res);
+                                }
+                                else{
+                                   $res['status'] = false;
+                                   $res['message'] = 'success';
+                        
+                                 return response($res);
+                                }
+            
+            
+                
+                    }
 
 
 

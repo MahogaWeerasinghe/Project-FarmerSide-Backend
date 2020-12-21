@@ -16,7 +16,9 @@ class approveloasController extends Controller
         $user = approveloans::join('applications', 'id', '=', 'approveloans.application_id')
         ->join('loans','loans.loan_id','=','approveloans.loan_id')
         ->where('applications.nic', '=',$nic)
-        ->select('loans.loan_name','approveloans.application_id','approveloans.date','approveloans.date_you_come','approveloans.special_notices')
+        ->where('approveloans.approve_status', '=',"false")
+        ->orderBy('approveloans.approved_date', 'desc')
+        ->select('*')
         ->get();
 
   
@@ -39,10 +41,13 @@ class approveloasController extends Controller
 
             public function showapproveloandata($application_id){
 
-                $user = approveloans::where('application_id', '=',$application_id)
-                ->select('*')
-                ->get();
-        
+        $user = approveloans::join('applications', 'id', '=', 'approveloans.application_id')
+        ->join('loans','loans.loan_id','=','approveloans.loan_id')
+        ->where('applications.id', '=',$application_id)
+        ->where('approveloans.approve_status', '=',"false")
+        ->orderBy('approveloans.approved_date', 'desc')
+        ->select('*')
+        ->get();
           
              
                     if ($user) {

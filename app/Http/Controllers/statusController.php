@@ -124,7 +124,34 @@ class statusController extends Controller
         
 
 
-                            
+                                    public function viewagrireport($app_id){
+
+                                        $user = applications :: join('reports','reports.app_id','=','applications.id')
+                                                ->join('farmersdetails','farmersdetails.nic','=','applications.nic')
+                                                ->where('reports.app_id', '=',$app_id)
+                                                  ->where('reports.AO_status','=',"true")
+                                                  ->where('reports.AI_status','=',"true")
+                                                  ->where('reports.DO_status','=',"true")
+                                               
+                                                  ->select('*')
+                                                  ->get();
+                                  
+                                                  if ($user) {
+                                                      $res['status'] = true;
+                                                      $res['message'] = $user;
+                                              
+                                                      return response($res);
+                                                      }
+                                                      else{
+                                                         $res['status'] = false;
+                                                         $res['message'] = 'success';
+                                              
+                                                       return response($res);
+                                                      }
+                                  
+                                  
+                                      
+                                          }
 
 
 

@@ -13,7 +13,7 @@ class approveloans extends Model
      * @var array
      */
     protected $fillable = [
-        'application_id','loan_id ','date','date_you_come','special_notices'
+        'application_id','loan_id ','approved_date','date_you_come','special_notices','approve_status'
     ];
 	
 		

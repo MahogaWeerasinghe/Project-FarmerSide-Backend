@@ -16,7 +16,7 @@ class rejectloansController extends Controller
         $user = rejectloans::join('applications', 'id', '=', 'rejectloans.application_id')
         ->join('loans','loans.loan_id','=','rejectloans.loan_id')
         ->where('applications.nic', '=',$nic)
-        ->select('loans.loan_name','rejectloans.application_id','rejectloans.rejected_reason','rejectloans.rejected_date')
+        ->select('*')
         ->get();
 
   
@@ -40,10 +40,11 @@ class rejectloansController extends Controller
 
             public function showrejectloandata($application_id){
 
-                $user = rejectloans::where('application_id', '=',$application_id)
-                ->select('rejected_reason','rejected_date')
-                ->get();
-        
+                $user = rejectloans::join('applications', 'id', '=', 'rejectloans.application_id')
+        ->join('loans','loans.loan_id','=','rejectloans.loan_id')
+        ->where('applications.id', '=',$application_id)
+        ->select('*')
+        ->get();
           
              
                     if ($user) {

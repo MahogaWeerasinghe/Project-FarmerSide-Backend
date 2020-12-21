@@ -16,7 +16,7 @@ class reports extends Model
     protected $primaryKey = 'rep_id';
     
     protected $fillable = [
-        'GN_No','GN_Division','Agr_service_dev','District','app_id','ao_id','ai_id','do_id','mem_id','fert_id','year','season','area','crop_type','quantity','income','subse','variety','sizeof','es_amount','ao_photos','ao_status','ai_status','do_status','bank_status','ao_date','ai_date','do_date'
+        'GN_No','GN_Division','Agr_service_dev','District','app_id','ao_id','ai_id','do_id','mem_id','fert_id','year','season','area','crop_type','quantity','income','subse','variety','sizeof','ao_photos','ai_photos','ao_status','ai_status','do_status','bank_status','ao_date','ai_date','do_date'
     ];
 	
 		

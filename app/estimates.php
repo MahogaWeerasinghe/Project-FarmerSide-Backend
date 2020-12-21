@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Loan extends Model
+class estimates extends Model
 {
 
     /**
@@ -12,12 +12,10 @@ class Loan extends Model
      *
      * @var array
      */
-    
-   
     protected $fillable = [
-        'loan_id','bank_id','loan_name','genera_info','specific_info','eligible_borrowers','eligible_crops','maximum_loanamount','Rateofinterest','Repaymentperiod','more_info','loan_logo'
+        'rep_id','forclean','forland','forseed','forfertilizer','forchemicals','forharvest','forothers','totalamount'
     ];
-	
+
 	
 
     /**
