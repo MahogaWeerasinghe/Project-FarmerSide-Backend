@@ -12,6 +12,8 @@ class approveloans extends Model
      *
      * @var array
      */
+
+    protected $primaryKey = 'approve_id';
     protected $fillable = [
         'application_id','loan_id ','approved_date','date_you_come','special_notices','approve_status'
     ];

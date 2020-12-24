@@ -76,8 +76,10 @@ class paymentController extends Controller
         
 
       $us = Payments::where('obtain_id', '=',$obtain_id)
+                      ->select('payments.rating_no')
                       ->orderBy('Installment_date', 'desc')
-                      ->first();
+                      ->take(2);
+                   
                       
         //->select('*');
     

@@ -76,7 +76,9 @@ $router->get('/viewdohis/{do_id}', [ 'uses' => 'applicationviewsController@viewd
 $router->get('/viewagrireport/{app_id}', [ 'uses' => 'statusController@viewagrireport']);
 $router->get('/getobtain/{nic}', [ 'uses' => 'paymentController@getobtain']);
 $router->get('/getobtainbyid/{obtain_id}', [ 'uses' => 'paymentController@getobtainbyid']);
+$router->get('/getmyloans/{nic}', [ 'uses' => 'FarmerController@getmyloans']);
 //$router->put('/updatepw/{id}', 'FarmerController@updatepw');
+
 //$router->get('/user', [ 'uses' => 'FarmerController@get_user']);
 
 //$app->get('/farmer/{telephone_number}', ['middleware' => 'auth', 'uses' =>  'FarmerController@get_user']);
@@ -136,3 +138,4 @@ $router->get('/getobtainDetails2/{loan_id}', 'obtainloan2Controller@getobtainDet
 $router->get('/getobtaineddetailsbyappid2/{application_id}', 'obtainloan2Controller@getobtaineddetailsbyappid');
 $router->get('/getobtain2/{obtain_id}', 'obtainloan2Controller@getobtain');
 $router->get('getPaymentsfi2/{obtain_id}', 'Payment2Controller@getPaymentsfi');
+$router->post('/updaterating/{payment_id}', 'Payment2Controller@updaterating');

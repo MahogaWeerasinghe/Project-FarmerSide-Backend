@@ -12,8 +12,9 @@ class Payments extends Model
      *
      * @var array
      */
+    protected $primaryKey = 'payment_id';
     protected $fillable = [
-        'obtain_id','Installment_date','Installment','paid_amount','to_be_paid_amount','to_be_paid_date'
+        'obtain_id','loan_id','Installment_date','Installment','paid_amount','to_be_paid_amount','to_be_paid_date','rating_no'
     ];
 	
 		

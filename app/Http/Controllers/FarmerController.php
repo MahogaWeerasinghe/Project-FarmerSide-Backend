@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Validation\ValidationException;
 use App\Farmer;
+use App\applications;
+use App\obtainloans;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -124,7 +126,31 @@ class FarmerController extends Controller
 		//Farmer::table('farmers')->where('id', $id)->update(['telephone_number' => $telephone_number, 'username' => $username,'password' => $password]);
         return response()->json($up, 200);
     }
-	
+    
+    public function getmyloans($nic){
+      
+        $user = applications::join('obtainloans', 'obtainloans.application_id', '=', 'applications.id')
+        ->where('applications.nic', '=',$nic)
+        ->select('obtainloans.obtain_id')
+        ->get();
+ 
+ 
+        
+ 
+           if ($user) {
+            $res['status'] = true;
+            $res['message'] = $user;
+    
+            return response($res);
+            }
+            else{
+               $res['status'] = false;
+               $res['message'] = 'Not have!';
+    
+             return response($res);
+            }
+     }
+ 
 	
 
 }

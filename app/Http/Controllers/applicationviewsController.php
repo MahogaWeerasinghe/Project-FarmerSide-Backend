@@ -110,7 +110,8 @@ class applicationviewsController extends Controller
                   $ai_status = $request->input('ai_status');
                   $do_status = $request->input('do_status');
                   $bank_status = $request->input('bank_status');
-                  
+                  $variety=$request->input('variety');
+                  $sizeof=$request->input('sizeof');
                         
                         $save = reports::create([
                     'app_id'=> $app_id,
@@ -122,7 +123,8 @@ class applicationviewsController extends Controller
                     'ai_status'=> $ai_status,
                     'do_status'=> $do_status ,
                     'bank_status'=> $bank_status ,
-                    
+                    'variety'=> $variety,
+                    'sizeof'=> $sizeof,
                           
                            
                         ]);

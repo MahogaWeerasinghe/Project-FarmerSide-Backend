@@ -120,9 +120,11 @@ class Payment2Controller extends Controller
     }
 
     public function getPayments($obtain_id){
-        $payments = payments::join('obtainloans', 'obtainloans.obtain_id', '=', 'payments.obtain_id')
+        $payments = Payments::join('obtainloans', 'obtainloans.obtain_id', '=', 'payments.obtain_id')
         ->where('payments.obtain_id', '=', $obtain_id)
         ->select('obtainloans.application_id', 'obtainloans.interest_rate', 'obtainloans.no_of_installment', 'obtainloans.obtain_id', 'payments.paid_amount', 'payments.payment_id', 'payments.rating_no', 'payments.to_be_paid_amount', 'payments.to_be_paid_date', 'payments.Installment', 'payments.Installment_date')
+        ->orderBy('payments.Installment_date','desc')
+        ->take(5)
         ->get();
         
 
@@ -141,15 +143,16 @@ class Payment2Controller extends Controller
 
     public function addPayment(Request $request){
 
-        $payment = payments::create($request->all());
+        $payment = Payments::create($request->all());
 
         return response()->json($payment, 201);
     }
 
     public function getPaymentsfi($obtain_id){
-        $payments = payments::join('obtainloans', 'obtainloans.obtain_id', '=', 'payments.obtain_id')
+        $payments = Payments::join('obtainloans', 'obtainloans.obtain_id', '=', 'payments.obtain_id')
         ->where('payments.obtain_id', '=', $obtain_id)
-        ->select('obtainloans.application_id', 'obtainloans.interest_rate', 'obtainloans.no_of_installment', 'obtainloans.obtain_id', 'payments.paid_amount', 'payments.payment_id', 'payments.rating_no', 'payments.to_be_paid_amount', 'payments.to_be_paid_date', 'payments.Installment', 'payments.Installment_date')
+        ->select('*')
+        ->orderBy('payments.Installment_date','desc')
         ->first();
         
 
@@ -162,6 +165,28 @@ class Payment2Controller extends Controller
             $res['message']='No payments yet';
             return response($res);
         }
+    }
+
+    public function updaterating($payment_id,Request $request)
+    {
+      try{
+        $page = $request->all();
+        $plan = Payments::where('payment_id','=',$payment_id)->first();
+        $plan->update($page);
+        
+        
+            $res['status'] = true;
+            $res['message'] = 'success!';
+            return response($res, 200);
+      
+      }
+      
+      catch (\Illuminate\Database\QueryException $ex) {
+                $res['status'] = false;
+                $res['message'] = $ex->getMessage();
+                return response($res, 500);
+            }
+
     }
 
 
