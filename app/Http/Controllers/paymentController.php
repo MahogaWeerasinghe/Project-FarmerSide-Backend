@@ -49,6 +49,8 @@ class paymentController extends Controller
     //  $user=Applications::where('loan_id', $loan_id)->join('farmersdetails',
       // 'nic','applications.nic')
        //->select('nameini','date')->get();
+
+    
 	   
        $user = Payments::where('obtain_id', '=',$obtain_id)
       ->select('*')
@@ -71,33 +73,65 @@ class paymentController extends Controller
 
     } 
 
-        public function showpaymentdetailslatest($obtain_id)
+        public function showpaymentdetailsratsum($nic)
         {
         
 
-      $us = Payments::where('obtain_id', '=',$obtain_id)
-                      ->select('payments.rating_no')
-                      ->orderBy('Installment_date', 'desc')
-                      ->take(2);
-                   
+          $user = obtainloans::join('applications', 'applications.id', '=', 'obtainloans.application_id')
+          ->join('payments','payments.obtain_id','=','obtainloans.obtain_id')
+         ->where('applications.nic', '=',$nic)
+         ->sum('payments.rating_no');
+         //->select('payments.rating_no')
+        //->get();
+   
                       
         //->select('*');
     
     
-       if ($us) {
+       if ($user) {
         $res['status'] = true;
-        $res['message'] = $us;
+        $res['message'] = $user;
         
         return response($res);
         }
 		else{
            $res['status'] = false;
-           $res['message'] = 'Cannot find applicants!';
+           $res['message'] = 'Cannot find !';
 
          return response($res);
         }
 		
   }
+
+
+  public function showpaymentdetailsrat($nic)
+  {
+  
+
+    $user = obtainloans::join('applications', 'applications.id', '=', 'obtainloans.application_id')
+    ->join('payments','payments.obtain_id','=','obtainloans.obtain_id')
+   ->where('applications.nic', '=',$nic)
+   ->select('payments.rating_no')
+  ->get();
+
+                
+  //->select('*');
+
+
+ if ($user) {
+  $res['status'] = true;
+  $res['message'] = $user;
+  
+  return response($res);
+  }
+else{
+     $res['status'] = false;
+     $res['message'] = 'Cannot find !';
+
+   return response($res);
+  }
+
+}
 
 
   public function getobtain($nic){

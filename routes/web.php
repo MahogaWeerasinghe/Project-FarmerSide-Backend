@@ -48,7 +48,8 @@ $router->get('/showapproveloandata/{application_id}', [ 'uses' => 'approveloasCo
 
 $router->get('/showpayments/{nic}', [ 'uses' => 'paymentController@showpayments']);
 $router->get('/showpaymentdetails/{obtain_id}', [ 'uses' => 'paymentController@showpaymentdetails']);
-$router->get('/showpaymentdetailslatest/{obtain_id}', [ 'uses' => 'paymentController@showpaymentdetails']);
+$router->get('/showpaymentdetailsrat/{nic}', [ 'uses' => 'paymentController@showpaymentdetailsrat']);
+$router->get('/showpaymentdetailsratsum/{nic}', [ 'uses' => 'paymentController@showpaymentdetailsratsum']);
 $router->post('/loginofficer', 'officerloginController@loginofficer');
 $router->get('/getAODetails/{nic}', [ 'uses' => 'officersdetailsController@getAODetails']);
 $router->get('/getAIDetails/{nic}', [ 'uses' => 'officersdetailsController@getAIDetails']);

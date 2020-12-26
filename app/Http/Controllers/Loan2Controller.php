@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Loan2;
+use App\Loan;
 use App\loans;
 
 class Loan2Controller extends Controller
@@ -32,7 +32,7 @@ class Loan2Controller extends Controller
             'Repaymentperiod' => 'required'
         ]);
 
-        $loan = loans::create($request->all());
+        $loan = Loan::create($request->all());
 
         return response()->json($loan, 201);
     }
@@ -57,7 +57,7 @@ class Loan2Controller extends Controller
       
        
             $page = $request->all();
-            $plan = Loan2::where('loan_id','=',$loan_id)->first();
+            $plan = loans::where('loan_id','=',$loan_id)->first();
             $plan->update($page);
             
             
@@ -77,7 +77,7 @@ class Loan2Controller extends Controller
 
     //to obtain existing loan types
     public function getLoans($bank_id, Request $request){
-        $loans = loans::where('bank_id', '=', $bank_id)->get();
+        $loans = Loan::where('bank_id', '=', $bank_id)->get();
 
         if($loans){
             $res['status']=true;
@@ -93,7 +93,7 @@ class Loan2Controller extends Controller
 
     //to retrive all loan scheme details
     public function getLoanDetails($loan_id){
-        $loanDetails = loans::where('loan_id', '=', $loan_id)->first();
+        $loanDetails = Loan::where('loan_id', '=', $loan_id)->first();
         return $loanDetails;
     }
 

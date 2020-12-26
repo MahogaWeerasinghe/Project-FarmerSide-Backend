@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Loan extends Model
+class Loan2 extends Model
 {
 
     /**

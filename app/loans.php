@@ -12,7 +12,7 @@ class loans extends Model
      *
      * @var array
      */
-
+    protected $primaryKey = 'loan_id';
     
     protected $fillable = [
         'loan_id','bank_id', 'loan_name', 'genera_info', 'specific_info', 'eligible_borrowers', 'eligible_crops', 'maximum_loanamount', 'Rateofinterest', 'Repaymentperiod', 'more_info', 'loan_logo'
