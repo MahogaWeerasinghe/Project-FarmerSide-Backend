@@ -17,19 +17,16 @@ class applyloanController extends Controller
   	
 	 public function showapplyloan($nic)
     {
-    //  $user=Applications::where('loan_id', $loan_id)->join('farmersdetails',
-      // 'nic','applications.nic')
-       //->select('nameini','date')->get();
-	   
-     $user = Applications::join('loans', 'loans.loan_id', '=', 'applications.loan_id')
-     ->join('reports', 'reports.app_id', '=', 'applications.id')
-      ->where('nic', '=',$nic)
-      ->where('ao_status', '=','true')
-      ->where('ai_status', '=','true')
-      ->where('do_status', '=','true')
-      ->where('bank_status', '=','false')
-      ->select('*')
-     ->get();
+  
+      $user = Applications::join('loans', 'loans.loan_id', '=', 'applications.loan_id')
+        ->join('reports', 'reports.app_id', '=', 'applications.id')
+        ->where('nic', '=',$nic)
+        ->where('ao_status', '=','true')
+        ->where('ai_status', '=','true')
+        ->where('do_status', '=','true')
+        ->where('bank_status', '=','false')
+        ->select('*')
+        ->get();
 
     
 	
@@ -39,7 +36,7 @@ class applyloanController extends Controller
 
         return response($res);
         }
-		else{
+		  else{
            $res['status'] = false;
            $res['message'] = 'Cannot find applicants!';
 
@@ -50,11 +47,8 @@ class applyloanController extends Controller
   
   public function getapplicantdetails($app_id)
   {
-  //  $user=Applications::where('loan_id', $loan_id)->join('farmersdetails',
-    // 'nic','applications.nic')
-     //->select('nameini','date')->get();
-   
-   $user = Applications::join('farmersdetails', 'farmersdetails.nic', '=', 'applications.nic')
+ 
+     $user = Applications::join('farmersdetails', 'farmersdetails.nic', '=', 'applications.nic')
     ->where('applications.id', '=',$app_id)
     ->select('*')
     ->get();

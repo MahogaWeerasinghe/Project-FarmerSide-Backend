@@ -10,8 +10,7 @@ class agrireportsController extends Controller
 {
 
   	
-	 public function submitAgrireports(Request $request)
-    {
+	 public function submitAgrireports(Request $request){
       
 	try{	
 		$repo = new Agrireports;
@@ -37,10 +36,7 @@ class agrireportsController extends Controller
     }
 
     public function getreports($app_id,$type){
-        //$telephone_number =$request->input('telephone_number');
-        //$user = Loan::where('bank_id',$bank_id)->first();
         $user = Agrireports::where('app_id',$app_id)->where('type',$type)->select('agr_images')->get();
-        
         return $user;
     }
 	

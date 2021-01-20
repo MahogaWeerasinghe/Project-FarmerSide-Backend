@@ -22,7 +22,6 @@ class applicationController extends Controller
             'nic' => 'required',
             'date' => 'required',
 			'crop' => 'required',
-			//'whatfor' => 'required',
 			'reason' => 'required',
 			'amount' => 'required',
 			'months' => 'required',
@@ -58,15 +57,12 @@ class applicationController extends Controller
         $this->validate($request, $rules, $customMessages);
  
        try {
-            //$hasher = app()->make('hash');
-           
-            
+         
 			
 			$loan_id = $request->input('loan_id');
 			$nic = $request->input('nic');
             $date = $request->input('date');
 			$crop = $request->input('crop');
-			//$whatfor = $request->input('whatfor');
 			$reason = $request->input('reason');
 			$amount = $request->input('amount');
 			$months = $request->input('months');
@@ -98,7 +94,6 @@ class applicationController extends Controller
             'nic' => $nic,
             'date' => $date,
 			'crop' => $crop,
-			//'whatfor' => $whatfor,
 			'reason' => $reason,
 			'amount' => $amount,
 			'months' => $months,
@@ -133,19 +128,18 @@ class applicationController extends Controller
             $res['message'] = 'Please Attach Agriculture reports !';
 			$res['data']=$save;
             return response($res, 200);
-}
+	}
 		catch (\Illuminate\Database\QueryException $ex) {
             $res['status'] = false;
             $res['message'] = $ex->getMessage();
             return response($res, 500);
         }
 		
-    }
+}
 	
 	public function getappdetails($nic,Request $request){
-    //$telephone_number =$request->input('telephone_number');
-    $user = Applications::where('nic',$nic)->get();
-    return $user;
+    	$user = Applications::where('nic',$nic)->get();
+    	return $user;
 	}
 	
 

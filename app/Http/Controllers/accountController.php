@@ -1,4 +1,5 @@
 <?php
+//Controller of Farmer & officers side
 
 namespace App\Http\Controllers;
 use Illuminate\Validation\ValidationException;
@@ -10,11 +11,9 @@ class accountController extends Controller
 {
 	
   	
-	 public function insertaccount(Request $request)
+	public function insertaccount(Request $request) //insert bank account details
     {
-      
-		
-		
+    
 		
 		$rules = [
       
@@ -23,8 +22,7 @@ class accountController extends Controller
             'bank_name' => 'required',
 			'branch' => 'required',
 			'type' => 'required',
-		
-           
+	   
          ];
  
         $customMessages = [
@@ -33,33 +31,26 @@ class accountController extends Controller
         $this->validate($request, $rules, $customMessages);
  
        try {
-            //$hasher = app()->make('hash');
-           
-            
-			
+    	
 			$accountno = $request->input('accountno');
 			$nic = $request->input('nic');
             $bank_name = $request->input('bank_name');
 			$branch = $request->input('branch');
 			$type = $request->input('type');
 			
-			
-            
             $save = Account::create([
             'accountno' => $accountno,
             'nic' => $nic,
             'bank_name' => $bank_name,
 			'branch' => $branch,
-			'type' => $type,
-
-			          
-               
+			'type' => $type,    
             ]);
 		  
             $res['status'] = true;
             $res['message'] = 'success!';
             return response($res, 200);
-}
+        }
+
 		catch (\Illuminate\Database\QueryException $ex) {
             $res['status'] = false;
             $res['message'] = $ex->getMessage();
@@ -69,10 +60,8 @@ class accountController extends Controller
     }
 	
 	
-    public function getaccounts($nic){
-      
+    public function getaccounts($nic){  //get account details by nic
         $user = Account::where('nic',$nic)->select('*')->get();
-        
         return $user;
     }
 	

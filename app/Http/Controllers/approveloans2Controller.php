@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\approveloans;
 use App\farmersdetails;
@@ -34,9 +33,7 @@ class approveloans2Controller extends Controller
             $repo->special_notices=$request->input('special_notices');
             $repo->approve_status=$request->input('approve_status');
 
-           
-            
-            $repo->save();
+                $repo->save();
          
                 $res['status'] = true;
                 $res['message'] = 'approve success!';
@@ -48,59 +45,56 @@ class approveloans2Controller extends Controller
                 $res['status'] = false;
                 $res['message'] = $ex->getMessage();
                 return response($res, 500);
-            }
+        }
     }
 
     public function getapproveDetails($loan_id){
       
        $user = applications::join('approveloans', 'approveloans.application_id', '=', 'applications.id')
-       ->join('farmersdetails', 'farmersdetails.nic', '=', 'applications.nic')
-       ->where('approveloans.loan_id', '=',$loan_id)
-       ->where('approveloans.approve_status', '=',"false")
-       ->select('*')
-       ->get();
+            ->join('farmersdetails', 'farmersdetails.nic', '=', 'applications.nic')
+            ->where('approveloans.loan_id', '=',$loan_id)
+            ->where('approveloans.approve_status', '=',"false")
+            ->select('*')
+            ->get();
 
+                if ($user) {
+                $res['status'] = true;
+                $res['message'] = $user;
 
-       
+                return response($res);
+                }
 
-          if ($user) {
-           $res['status'] = true;
-           $res['message'] = $user;
-   
-           return response($res);
-           }
-           else{
-              $res['status'] = false;
-              $res['message'] = 'Cannot find applicant!';
-   
-            return response($res);
-           }
+                else{
+                    $res['status'] = false;
+                    $res['message'] = 'Cannot find applicant!';
+
+                return response($res);
+            }
+    
     }
+
 
     public function getapproveDetailsbyappid($application_id){
+
         $user = applications::join('approveloans', 'approveloans.application_id', '=', 'applications.id')
-        ->join('farmersdetails', 'farmersdetails.nic', '=', 'applications.nic')
-       ->where('approveloans.application_id', '=',$application_id)
-       ->select('*')
-       ->get();
+                ->join('farmersdetails', 'farmersdetails.nic', '=', 'applications.nic')
+                ->where('approveloans.application_id', '=',$application_id)
+                ->select('*')
+                ->get();
 
-
-
-       
-
-          if ($user) {
-           $res['status'] = true;
-           $res['message'] = $user;
-   
-           return response($res);
-           }
-           else{
-              $res['status'] = false;
-              $res['message'] = 'Cannot find applicant!';
-   
-            return response($res);
-           }
-    }
+                if ($user) {
+                $res['status'] = true;
+                $res['message'] = $user;
+        
+                return response($res);
+                }
+                else{
+                    $res['status'] = false;
+                    $res['message'] = 'Cannot find applicant!';
+        
+                    return response($res);
+                }
+}
 
     public function rejectloan(Request $request){
         try{	
@@ -115,7 +109,7 @@ class approveloans2Controller extends Controller
             $repo->From_where=$request->input('From_where');
            
             
-            $repo->save();
+                $repo->save();
          
                 $res['status'] = true;
                 $res['message'] = 'Reject success!';
@@ -123,7 +117,8 @@ class approveloans2Controller extends Controller
                 return response($res, 200);
                 
         }
-             catch (\Illuminate\Database\QueryException $ex) {
+        
+        catch (\Illuminate\Database\QueryException $ex) {
                 $res['status'] = false;
                 $res['message'] = $ex->getMessage();
                 return response($res, 500);

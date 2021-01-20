@@ -18,17 +18,17 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(['prefix' => 'api'], function () use ($router) {
-	 $router->post('farmers', ['uses' => 'FarmerController@register']);
-	 //$router->post('farmers', ['uses' => 'LoginController@login']);
+	 $router->post('farmers', ['uses' => 'FarmerController@register']); //to farmer's register
+	 //$router->post('farmers', ['uses' => 'LoginController@login']); 
 	 //$router->post('farmerdetails', ['uses' => 'editdetailsController@editDetails']);
 });
 
-$router->post('/login', 'LoginController@login');
+$router->post('/login', 'LoginController@login');  //to farmer's login
 //$router->post('/test', 'LoginController@test');
-$router->post('/editDetails', 'editdetailsController@editDetails');
+$router->post('/editDetails', 'editdetailsController@editDetails'); //to edit farmer's personal details
 //$router->put('/update/{id}', 'editdetailsController@update');
-$router->get('/getdetails/{nic}', 'editdetailsController@getdetails');
-$router->get('/getloans/{bank_id}', 'LoanController@getloans');
+$router->get('/getdetails/{nic}', 'editdetailsController@getdetails'); //to get details by nic
+$router->get('/getloans/{bank_id}', 'LoanController@getloans'); //to get loans
 $router->get('/bankdetails', 'BankController@bankdetails');
 $router->get('/getloandetails/{loan_id}', 'LoanController@getloandetails');
 $router->post('/submitloan', 'applicationController@submitloan');

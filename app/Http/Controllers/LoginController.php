@@ -28,7 +28,6 @@ class LoginController extends Controller
                     if (Hash::check($request->input('password'), $login->password)) {
                         try {
                        
- 
                            
                               $res['status'] = true;
                               $res['message'] = 'Success Login';
@@ -45,17 +44,17 @@ class LoginController extends Controller
                         }
                     } else {
                         $res['success'] = false;
-                        $res['message'] = 'Username / nic / password not found';
+                        $res['message'] = 'Username / NIC / password not found';
                         return response($res, 401);
                     }
                 } else {
                     $res['success'] = false;
-                    $res['message'] = 'Username / nic / password  not found';
+                    $res['message'] = 'Username / NIC / password  not found';
                     return response($res, 401);
                 }
             } else {
                 $res['success'] = false;
-                $res['message'] = 'Username / nic / password not found';
+                $res['message'] = 'Username / NIC / password not found';
                 return response($res, 401);
             }
         } catch (\Illuminate\Database\QueryException $ex) {
